@@ -1,8 +1,11 @@
-﻿using Xunit;
-using Moq;
-using MT5AccountOverviewDashboardTask.Services;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
+using Moq;
+using MT5AccountOverviewDashboardTask.Models;
+using MT5AccountOverviewDashboardTask.Services;
 using MT5AccountOverviewDashboardTask.Tests.Helpers;
+using Xunit;
 
 namespace MT5AccountOverviewDashboardTask.Tests.Services
 {
@@ -41,5 +44,38 @@ namespace MT5AccountOverviewDashboardTask.Tests.Services
             Assert.NotEmpty(trades);
             Assert.All(trades, t => Assert.False(string.IsNullOrWhiteSpace(t.ticket)));
         }
+
+        [Fact]
+        public async Task GetAccountDetailsAsync_ReturnsEmptyAccountModel_WhenAccountNotFound()
+        {
+            
+            var envMock = new Mock<IWebHostEnvironment>();
+            envMock.Setup(e => e.ContentRootPath).Returns(Directory.GetCurrentDirectory());
+            var loggerMock = new Mock<ILogger<JSONAccountService>>();
+            var service = new JSONAccountService(envMock.Object, loggerMock.Object);
+
+            var testAccountId = "nonexistent";
+            var testAccounts = new List<AccountModel>
+            {
+                new AccountModel { accountId = "123", balance = 1000, equity = 1000, marginLevel = 100, lastLogin = DateTime.Now, status = "Active" }
+            };
+            var dataDir = Path.Combine(envMock.Object.ContentRootPath, "Data");
+            Directory.CreateDirectory(dataDir);
+            var filePath = Path.Combine(dataDir, "account.json");
+            await File.WriteAllTextAsync(filePath, JsonSerializer.Serialize(testAccounts));
+
+            
+            var result = await service.GetAccountDetailsAsync(testAccountId);
+
+            
+            Assert.NotNull(result);
+            Assert.Null(result.accountId);
+            Assert.Equal(0, result.balance);
+            Assert.Equal(0, result.equity);
+            Assert.Equal(0, result.marginLevel);
+            Assert.Equal(default(DateTime), result.lastLogin);
+            Assert.Null(result.status);
+        }
+
     }
 }
