@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MT5AccountOverviewDashboardTask.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16d829f7621473e8209efbc50c8b49790aa9fa73")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9af4eea9079ce6c997e54fb8255d24f9431f44c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("MT5AccountOverviewDashboardTask.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MT5AccountOverviewDashboardTask.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -57,7 +57,7 @@ namespace MT5AccountOverviewDashboardTask.Tests.Services
             var testAccountId = "nonexistent";
             var testAccounts = new List<AccountModel>
             {
-                new AccountModel { accountId = "123", balance = 1000, equity = 1000, marginLevel = 100, lastLogin = DateTime.Now, status = "Active" }
+                new AccountModel { accountId = "12345", balance = 10000.00, equity = 9500.00, marginLevel = 120.5, lastLogin = DateTime.Now, status = "Active" }
             };
             var dataDir = Path.Combine(envMock.Object.ContentRootPath, "Data");
             Directory.CreateDirectory(dataDir);

@@ -1,18 +1,1 @@
-[
-  {
-    "accountId": "12345",
-    "balance": 10000.00,
-    "equity": 9500.00,
-    "marginLevel": 120.5,
-    "lastLogin": "2024-06-10T09:30:00",
-    "status": "Active"
-  },
-  {
-    "accountId": "67890",
-    "balance": 5000.00,
-    "equity": 4800.00,
-    "marginLevel": 110.2,
-    "lastLogin": "2024-06-09T15:45:00",
-    "status": "Inactive"
-  }
-]
+[{"accountId":"12345","balance":10000,"equity":9500,"marginLevel":120.5,"lastLogin":"2025-09-21T22:12:49.9155402+04:00","status":"Active"}]
