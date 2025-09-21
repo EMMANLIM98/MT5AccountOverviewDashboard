@@ -1,0 +1,90 @@
+﻿@{
+    var account = Model?.Account;
+    var trades = Model?.Trades as List<MT5AccountOverviewDashboardTask.Models.TradeModel>;
+}
+
+<h2 class="mt-4 mb-3 text-primary">Account Dashboard</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
+else if (account != null)
+{
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3 shadow">
+                <div class="card-header">Balance</div>
+                <div class="card-body">
+                    <h4 class="card-title">@account.balance.ToString("C")</h4>
+                    <p class="card-text">Current account balance</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3 shadow">
+                <div class="card-header">Equity</div>
+                <div class="card-body">
+                    <h4 class="card-title">@account.equity.ToString("C")</h4>
+                    <p class="card-text">Current account equity</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-info mb-3 shadow">
+                <div class="card-header">Margin Level</div>
+                <div class="card-body">
+                    <h4 class="card-title">@account.marginLevel</h4>
+                    <p class="card-text">Margin level (%)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-secondary text-white">
+            <strong>Account Details</strong>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Account Number:</strong> @account.accountId</li>
+            <li class="list-group-item"><strong>Last Login:</strong> @account.lastLogin</li>
+            <li class="list-group-item">
+                <strong>Status:</strong>
+                <span class="badge @(account.status == "Active" ? "bg-success" : "bg-danger")">@account.status</span>
+            </li>
+            <li class="list-group-item"><strong>Open Trades:</strong> <span class="badge bg-primary">@Model.OpenTradesCount</span></li>
+        </ul>
+    </div>
+
+    <h3 class="mb-3 text-secondary">Open Trades</h3>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Ticket</th>
+                    <th>Symbol</th>
+                    <th>Volume</th>
+                    <th>Profit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (trades != null)
+                {
+                    foreach (var trade in trades)
+                    {
+                        <tr>
+                            <td>@trade.ticket</td>
+                            <td>@trade.symbol</td>
+                            <td>@trade.volume</td>
+                            <td class="fw-bold @(trade.profit >= 0 ? "text-success" : "text-danger")">
+                                @trade.profit.ToString("C")
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

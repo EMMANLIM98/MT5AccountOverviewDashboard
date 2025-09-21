@@ -1,0 +1,14 @@
+[
+  {
+    "ticket": "10001",
+    "symbol": "EURUSD",
+    "volume": 1.0,
+    "profit": 100.20
+  },
+  {
+    "ticket": "10002",
+    "symbol": "GBPUSD",
+    "volume": 0.5,
+    "profit": -45.10
+  }
+]

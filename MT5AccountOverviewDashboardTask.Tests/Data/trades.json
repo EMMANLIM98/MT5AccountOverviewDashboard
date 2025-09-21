@@ -1,0 +1,14 @@
+﻿[
+    {
+        "ticket": "T1001",
+        "symbol": "EURUSD",
+        "volume": 1.5,
+        "profit": 120.50
+    },
+    {
+        "ticket": "T1002",
+        "symbol": "GBPUSD",
+        "volume": 2.0,
+        "profit": -50.00
+    }
+]
